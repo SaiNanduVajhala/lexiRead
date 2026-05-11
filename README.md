@@ -2,6 +2,10 @@
 
 <div align="center">
   <em>An AI-powered reading companion designed to instantly transform complex, dense texts into clear, digestible, and visually stress-free formats using Google Gemma 4.</em>
+
+  <br/>
+  
+  **[🚀 View Live Demo](https://lexi-read-one.vercel.app)** | **[💻 GitHub Repo](https://github.com/SaiNanduVajhala/lexiRead)**
 </div>
 
 <br/>
@@ -29,8 +33,8 @@ Get the application running locally in under 2 minutes.
 ### 1. Installation
 
 ```bash
-# Enter the backend directory
-cd backend
+# Enter the API directory
+cd api
 
 # Install the Python dependencies
 pip install -r requirements.txt
@@ -115,7 +119,7 @@ lexiRead uses a decoupled, server-rendered approach to ensure maximum compatibil
 ## 🔌 API Reference
 
 <details>
-<summary><b><code>POST /process-text</code></b></summary>
+<summary><b><code>POST /api/process-text</code></b></summary>
 Simplifies a block of text into a structured JSON format.
 
 - **Headers:** `X-API-Key: <Google Gemini Key>`
@@ -129,7 +133,7 @@ Simplifies a block of text into a structured JSON format.
 </details>
 
 <details>
-<summary><b><code>POST /deep-dive</code></b></summary>
+<summary><b><code>POST /api/deep-dive</code></b></summary>
 Provides a deeper, Socratic explanation for a specific section.
 
 - **Headers:** `X-API-Key: <Google Gemini Key>`
@@ -144,7 +148,7 @@ Provides a deeper, Socratic explanation for a specific section.
 </details>
 
 <details>
-<summary><b><code>POST /define-word</code></b></summary>
+<summary><b><code>POST /api/define-word</code></b></summary>
 Gets a 10-year-old level definition of a word. Checks the local `dictionary_seed.json` first for zero-latency, offline-capable results before falling back to the LLM.
 
 - **Headers:** `X-API-Key: <Google Gemini Key>`
