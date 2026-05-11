@@ -131,8 +131,12 @@ class GemmaService:
 
     async def process_text(self, text: str, custom_prompt: str = None, api_key: str = None) -> dict:
         """Simplify the given text using Gemma 4 or the mock fallback."""
-        if api_key:
-            self._init_models(api_key)
+        # Use the provided key, or fallback to the server-side environment variable
+        target_key = api_key if api_key else os.getenv("GOOGLE_API_KEY", "")
+        if target_key:
+            self._init_models(target_key)
+        else:
+            self.use_mock = True
             
         if self.use_mock:
             return MOCK_RESPONSE
@@ -188,8 +192,11 @@ class GemmaService:
 
     async def deep_dive(self, section_type: str, section_content: str, original_text: str, api_key: str = None) -> dict:
         """Provide a deeper, simpler explanation of a specific section."""
-        if api_key:
-            self._init_models(api_key)
+        target_key = api_key if api_key else os.getenv("GOOGLE_API_KEY", "")
+        if target_key:
+            self._init_models(target_key)
+        else:
+            self.use_mock = True
             
         if self.use_mock:
             return {
@@ -232,9 +239,12 @@ class GemmaService:
 
     async def define_word(self, word: str, context_sentence: str, api_key: str = None) -> dict:
         """Provide a simple definition for a word, checking local data first."""
-        if api_key:
-            self._init_models(api_key)
-            
+        target_key = api_key if api_key else os.getenv("GOOGLE_API_KEY", "")
+        if target_key:
+            self._init_models(target_key)
+        else:
+            self.use_mock = True
+
         clean_word = word.lower().strip().rstrip(".,!?;:")
         
         # 1. Check Session Cache (Instant)
