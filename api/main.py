@@ -6,7 +6,9 @@ from fastapi import FastAPI, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from .llm_service import GemmaService
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from llm_service import GemmaService
 
 app = FastAPI(
     title="Dyslexia Reading Companion API",
