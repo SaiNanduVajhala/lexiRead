@@ -23,11 +23,7 @@
       "destination": "/api/main.py"
     },
     {
-      "source": "/",
-      "destination": "/lexiRead/index.html"
-    },
-    {
-      "source": "/((?!api/|process-text|deep-dive|define-word).*)",
+      "source": "/(.*)",
       "destination": "/lexiRead/$1"
     }
   ]
