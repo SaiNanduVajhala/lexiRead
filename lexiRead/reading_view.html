@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>lexiRead - Reading View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="accessibility_global.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "cream": "#FDFBF7",
+                        "charcoal": "#2D3142",
+                        "accent": "#B5D99C",
+                        "card": "#ffffff",
+                        "border": "#e6e2d9",
+                        "text-muted": "#606376"
+                    },
+                    "fontFamily": {
+                        "body": ["'Atkinson Hyperlegible'", "sans-serif"],
+                        "heading": ["'Atkinson Hyperlegible'", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>body { background-color: #FDFBF7; color: #2D3142; font-family: 'Atkinson Hyperlegible', sans-serif; line-height: 1.8; } .section-divider { border-top: 1px solid rgba(181, 217, 156, 0.2); } .minimal-section { padding: 3rem 0; }</style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="w-full h-24 bg-cream/90 backdrop-blur-sm sticky top-0 z-40 border-b border-border/50">
+<div class="flex items-center justify-between h-full px-8 max-w-5xl mx-auto w-full">
+<div class="flex items-center gap-4">
+    <button aria-label="Go Back" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-accent/20 transition-colors">
+        <span class="material-symbols-outlined text-charcoal" style="font-size: 24px;">arrow_back</span>
+    </button>
+    <h1 class="font-heading text-2xl font-bold text-charcoal">Simplified View</h1>
+</div>
+<div class="hidden md:flex gap-8 items-center h-full">
+    <a class="text-text-muted hover:text-accent transition-colors duration-300 font-bold" href="index.html">Home</a>
+    <a class="text-text-muted hover:text-accent transition-colors duration-300 font-bold" href="glossary.html">Glossary</a>
+    <a class="text-text-muted hover:text-accent transition-colors duration-300 font-bold" href="library.html">Library</a>
+    <button onclick="window.location.href='settings.html'" class="p-2 text-text-muted hover:text-accent transition-colors">
+        <span class="material-symbols-outlined">settings</span>
+    </button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-8 py-24 space-y-24 relative z-10 pb-48">
+<!-- Hero Title -->
+<div class="mb-24 text-center">
+<h2 id="readingTitle" class="font-heading font-bold text-charcoal mb-4 text-5xl">Your Simplified Text</h2>
+<p id="readingSubtitle" class="text-lg text-text-muted max-w-2xl mx-auto">AI generated summary and insights.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Original Text (collapsible, full width) -->
+<section id="originalTextSection" class="col-span-1 md:col-span-12 rounded-2xl bg-card border-2 border-accent/20 shadow-sm hidden">
+    <button id="originalTextToggle" onclick="toggleOriginal()" class="w-full flex items-center justify-between p-6 text-left hover:bg-accent/5 transition-colors rounded-2xl">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-charcoal" style="font-size:20px">article</span>
+            </div>
+            <div>
+                <h3 class="font-heading text-lg font-bold text-charcoal">Original Text</h3>
+                <p class="text-sm text-text-muted">The text you submitted</p>
+            </div>
+        </div>
+        <span id="originalArrow" class="material-symbols-outlined text-text-muted transition-transform duration-300" style="font-size:20px">expand_more</span>
+    </button>
+    <div id="originalTextBody" class="hidden px-6 pb-6">
+        <div class="h-px w-full bg-accent/20 mb-4"></div>
+        <p id="originalTextContent" class="text-base text-charcoal leading-relaxed whitespace-pre-wrap max-h-64 overflow-y-auto"></p>
+    </div>
+</section>
+<!-- Summary (Full width) -->
+<section class="col-span-1 md:col-span-12 p-8 rounded-2xl bg-card border-2 border-accent/40 shadow-sm transition-colors hover:border-accent/80">
+<div class="flex items-start gap-4 mb-6">
+<div class="w-12 h-12 rounded-full text-charcoal flex items-center justify-center shrink-0 bg-accent/10 text-accent">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">summarize</span>
+</div>
+<div>
+<h3 class="font-heading text-2xl font-bold mb-3 text-charcoal">Summary</h3>
+<p id="summaryContent" class="text-lg text-charcoal"></p>
+</div>
+</div>
+<div class="flex justify-end mt-6">
+<button onclick="deepDive('summary', this)" class="flex items-center gap-2 px-6 py-3 rounded-full hover:bg-accent/80 text-charcoal font-bold transition-colors bg-accent/10 text-accent">
+<span>Tell Me More</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Key Facts (Half width) -->
+<section class="col-span-1 md:col-span-6 flex flex-col p-8 rounded-2xl bg-card border-2 border-accent/40 shadow-sm transition-colors hover:border-accent/80">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-accent text-2xl">check_circle</span>
+<h3 class="font-heading text-2xl font-bold text-charcoal">Key Facts</h3>
+</div>
+<ul id="factsContent" class="space-y-4 flex-1 mb-8">
+</ul>
+<button onclick="deepDive('key_facts', this)" class="flex items-center gap-2 px-8 py-3 rounded-full bg-accent/10 hover:bg-accent/20 text-charcoal font-bold transition-all border border-accent/20">
+<span>Tell Me More</span>
+</button>
+</section>
+<!-- Vocabulary (Half width) -->
+<section class="col-span-1 md:col-span-6 flex flex-col p-8 rounded-2xl bg-card border-2 border-accent/40 shadow-sm transition-colors hover:border-accent/80">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-accent text-2xl">dictionary</span>
+<h3 class="font-heading text-2xl font-bold text-charcoal">Vocabulary</h3>
+</div>
+<div id="vocabContent" class="flex-1 mb-8">
+</div>
+<button onclick="deepDive('vocabulary', this)" class="flex items-center gap-2 px-8 py-3 rounded-full bg-accent/10 hover:bg-accent/20 text-charcoal font-bold transition-all border border-accent/20">
+<span>Tell Me More</span>
+</button>
+</section>
+<!-- Analogy (Full width) -->
+<section class="col-span-1 md:col-span-12 p-8 rounded-2xl bg-accent/5 border-2 border-accent/40 shadow-sm transition-colors hover:border-accent/80">
+<div class="flex items-start gap-4 mb-6">
+<div class="w-12 h-12 rounded-full text-charcoal flex items-center justify-center shrink-0 bg-accent/10 text-accent">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div>
+<h3 class="font-heading text-2xl font-bold mb-3 text-charcoal">Analogy</h3>
+<p id="analogyContent" class="text-lg text-charcoal"></p>
+</div>
+</div>
+<div class="flex justify-end mt-6">
+<button onclick="deepDive('analogy', this)" class="flex items-center gap-2 px-6 py-3 rounded-full hover:bg-accent/80 text-charcoal font-bold transition-colors bg-accent/10 text-accent">
+<span>Tell Me More</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Global Selection Toolbar will be injected by selection_toolbar.js -->
+
+<script src="selection_toolbar.js"></script>
+
+<script>
+    // --- Backend API Integration: Load Data ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const dataString = sessionStorage.getItem('simplifiedData');
+        
+        if (!dataString) {
+            // If no data, redirect back to workspace
+            window.location.href = 'index.html';
+            return;
+        }
+
+        try {
+            const data = JSON.parse(dataString);
+
+
+
+            // Show Original Text section
+            const originalText = sessionStorage.getItem('originalText') || '';
+            if (originalText) {
+                document.getElementById('originalTextSection').classList.remove('hidden');
+                document.getElementById('originalTextContent').textContent = originalText;
+            }
+
+            // Set title from AI-generated title
+            if (data.title) {
+                document.getElementById('readingTitle').textContent = data.title;
+            }
+
+            // Populate Summary
+            let summaryText = data.simplified_summary || data.summary || "";
+            if (summaryText) {
+                document.getElementById('summaryContent').innerHTML = window.applyBionic ? window.applyBionic(summaryText) : summaryText;
+            }
+
+            // Populate Facts
+            const facts = data.structured_breakdown || data.key_facts;
+            if (facts && facts.length > 0) {
+                const factsContainer = document.getElementById('factsContent');
+                factsContainer.innerHTML = ''; // Clear initial
+                facts.forEach(fact => {
+                    const li = document.createElement('li');
+                    li.className = "flex gap-3 pb-4 border-b border-border last:border-0 last:pb-0";
+                    const factContent = window.applyBionic ? window.applyBionic(fact) : fact;
+                    li.innerHTML = `
+                        <span class="material-symbols-outlined text-accent shrink-0 mt-1">fiber_manual_record</span>
+                        <span class="text-base text-charcoal">${factContent}</span>
+                    `;
+                    factsContainer.appendChild(li);
+                });
+            }
+
+            // Populate Vocabulary
+            const vocab = data.vocabulary_check || data.vocabulary;
+            if (vocab && vocab.length > 0) {
+                const vocabContainer = document.getElementById('vocabContent');
+                vocabContainer.innerHTML = '';
+                vocab.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = "p-0 bg-transparent border-0 mb-8 last:mb-0";
+                    const bWord = window.applyBionic ? window.applyBionic(item.word) : item.word;
+                    const bDef = window.applyBionic ? window.applyBionic(item.simple_definition || item.definition) : (item.simple_definition || item.definition);
+                    div.innerHTML = `
+                        <div class="font-bold text-charcoal mb-1 tracking-wide text-lg mb-2">${bWord}</div>
+                        <div class="text-base text-charcoal">${bDef}</div>
+                    `;
+                    vocabContainer.appendChild(div);
+                });
+            }
+
+            const analogy = data.helpful_analogy || data.analogy;
+            if (analogy) {
+                document.getElementById('analogyContent').innerHTML = window.applyBionic ? window.applyBionic(analogy) : analogy;
+            }
+
+        } catch (e) {
+            console.error("Failed to parse simplified data", e);
+            alert("There was an error loading the simplified text.");
+        }
+    });
+
+    // Wire up "Go Back" button
+    document.querySelector('button[aria-label="Go Back"]').addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+
+    // Toggle Original Text panel
+    function toggleOriginal() {
+        const body = document.getElementById('originalTextBody');
+        const arrow = document.getElementById('originalArrow');
+        const isHidden = body.classList.contains('hidden');
+        body.classList.toggle('hidden', !isHidden);
+        arrow.style.transform = isHidden ? 'rotate(180deg)' : '';
+    }
+
+    // Deep Dive API logic
+    async function deepDive(sectionType, btnElement) {
+        const dataString = sessionStorage.getItem('simplifiedData');
+        if (!dataString) return;
+        const data = JSON.parse(dataString);
+        
+        let sectionContent = "";
+        if (sectionType === 'summary') sectionContent = data.simplified_summary || data.summary;
+        else if (sectionType === 'key_facts') sectionContent = JSON.stringify(data.structured_breakdown || data.key_facts);
+        else if (sectionType === 'vocabulary') sectionContent = JSON.stringify(data.vocabulary_check || data.vocabulary);
+        else if (sectionType === 'analogy') sectionContent = data.helpful_analogy || data.analogy;
+
+        const originalText = data.original_text || ""; // Assuming we saved it, though backend might not echo it. If not, deep dive might be limited.
+
+        const originalBtnText = btnElement.innerHTML;
+        btnElement.innerHTML = `<span class="animate-spin material-symbols-outlined">refresh</span> Loading...`;
+        btnElement.disabled = true;
+
+        try {
+            const apiKey = localStorage.getItem('lexiRead_apiKey') || '';
+            const res = await fetch('/deep-dive', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-API-Key': apiKey
+                },
+                body: JSON.stringify({
+                    section_type: sectionType,
+                    section_content: sectionContent,
+                    original_text: originalText
+                })
+            });
+
+            if (!res.ok) throw new Error("API failed");
+            const result = await res.json();
+            
+            // Create a styled block for the deep dive insights
+            const deepDiveContent = document.createElement('div');
+            deepDiveContent.className = "mt-6 p-6 bg-accent/10 border-l-4 border-accent rounded-r-xl transition-all duration-300";
+            const bExp = window.applyBionic ? window.applyBionic(result.explanation || result.deep_dive || "Detailed explanation not available.") : (result.explanation || result.deep_dive || "Detailed explanation not available.");
+            deepDiveContent.innerHTML = `
+                <h4 class="font-heading font-bold text-lg text-charcoal mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined">explore</span> Deeper Dive
+                </h4>
+                <p class="text-charcoal mb-4">${bExp}</p>
+                ${result.example ? `
+                <div class="bg-card/50 p-4 rounded-lg flex items-start gap-3">
+                    <span class="material-symbols-outlined text-accent shrink-0 mt-1">lightbulb</span>
+                    <p class="text-charcoal text-sm italic">"${window.applyBionic ? window.applyBionic(result.example) : result.example}"</p>
+                </div>
+                ` : ''}
+            `;
+            
+            // Insert it before the button's parent container (if it has one like 'flex justify-end') or the button itself
+            const targetContainer = btnElement.parentElement.classList.contains('justify-end') ? btnElement.parentElement : btnElement;
+            targetContainer.parentNode.insertBefore(deepDiveContent, targetContainer);
+            
+            // Hide the button after loading the insight
+            targetContainer.style.display = 'none';
+            
+        } catch (err) {
+            console.error(err);
+            alert("Failed to fetch deep dive insights.");
+            btnElement.innerHTML = originalBtnText;
+            btnElement.disabled = false;
+        }
+    }
+</script>
+</body></html>

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>lexiRead - Accessibility Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="accessibility_global.js"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "background": "#FDFBF7",
+                "on-background": "#2D3142",
+                "surface": "#FDFBF7",
+                "on-surface": "#2D3142",
+                "primary": "#B5D99C",
+                "on-primary": "#2D3142",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#F5F3ED",
+                "surface-container": "#EFECE5",
+                "surface-variant": "#E8E6E0",
+                "on-surface-variant": "#5C6175",
+                "primary-container": "#D6EBC7",
+                "on-primary-container": "#2D3142",
+                "outline-variant": "#D1CFC9",
+                "surface-bright": "#FDFBF7",
+                "inverse-primary": "#add195",
+                "surface-container-highest": "#E8E6E0",
+                "tertiary-fixed-dim": "#f6b3d6",
+                "secondary-fixed": "#dee1f8",
+                "on-tertiary-fixed-variant": "#683653",
+                "on-secondary-fixed-variant": "#424658",
+                "on-primary-fixed-variant": "#314e20",
+                "inverse-on-surface": "#f5f0e7",
+                "on-secondary-fixed": "#171b2b",
+                "tertiary": "#834d6b",
+                "primary-fixed-dim": "#add195",
+                "tertiary-container": "#ffbbde",
+                "secondary-container": "#dee1f8",
+                "surface-container-high": "#EFECE5",
+                "error": "#ba1a1a",
+                "secondary": "#5a5d70",
+                "surface-dim": "#dedad1",
+                "inverse-surface": "#32302a",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#082100",
+                "outline": "#74796d",
+                "error-container": "#ffdad6",
+                "on-error-container": "#93000a",
+                "secondary-fixed-dim": "#c2c5db",
+                "tertiary-fixed": "#ffd8ea",
+                "surface-tint": "#B5D99C",
+                "on-secondary-container": "#606376",
+                "on-error": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "md": "24px",
+                "margin": "32px",
+                "xs": "4px",
+                "xl": "64px",
+                "gutter": "24px",
+                "base": "8px",
+                "lg": "40px",
+                "sm": "12px"
+        },
+        "fontFamily": {
+                "body-md": [
+                        "Atkinson Hyperlegible"
+                ],
+                "label-lg": [
+                        "Atkinson Hyperlegible"
+                ],
+                "label-sm": [
+                        "Atkinson Hyperlegible"
+                ],
+                "headline-lg": [
+                        "Atkinson Hyperlegible"
+                ],
+                "headline-md": [
+                        "Atkinson Hyperlegible"
+                ],
+                "body-lg": [
+                        "Atkinson Hyperlegible"
+                ]
+        },
+        "fontSize": {
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.8",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-lg": [
+                        "14px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.8",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined', sans-serif;
+        }
+    
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Dark Theme Overrides */
+        html.dark body {
+            background-color: #1a1b2e !important;
+            color: #e0e0e8 !important;
+        }
+        html.dark .bg-background { background-color: #1a1b2e !important; }
+        html.dark .bg-surface-container-lowest { background-color: #12131f !important; }
+        html.dark .bg-surface-container-low { background-color: #1e1f33 !important; }
+        html.dark .bg-surface-container { background-color: #252640 !important; }
+        html.dark .bg-surface-container-high { background-color: #2c2d4a !important; }
+        html.dark .bg-surface-container-highest { background-color: #333456 !important; }
+        html.dark .bg-surface { background-color: #1a1b2e !important; }
+        html.dark .text-on-surface { color: #e0e0e8 !important; }
+        html.dark .text-on-background { color: #e0e0e8 !important; }
+        html.dark .text-on-surface-variant { color: #a0a4b8 !important; }
+        html.dark .border-surface-variant { border-color: #3a3b58 !important; }
+        html.dark .border-surface-container-high { border-color: #2c2d4a !important; }
+        html.dark .shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+        html.dark nav { background-color: #12131f !important; border-color: #3a3b58 !important; }
+        html.dark header { background-color: #12131f !important; border-color: #3a3b58 !important; }
+        html.dark input, html.dark textarea {
+            background-color: #12131f !important;
+            color: #e0e0e8 !important;
+            border-color: #3a3b58 !important;
+        }
+        html.dark input[type="range"] {
+            background-color: #3a3b58 !important;
+        }
+        /* Ensure selected card borders are visible in dark mode */
+        html.dark .peer:checked ~ div {
+            border-color: #B5D99C !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md antialiased pb-32 md:pb-0">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-lowest font-body-md text-base tracking-wide docked full-width top-0 border-b border-surface-variant shadow-sm hidden md:block">
+<div class="flex justify-between items-center h-20 px-8 max-w-5xl mx-auto w-full">
+<a href="index.html" class="text-2xl font-bold text-primary hover:opacity-80 transition-opacity cursor-pointer">lexiRead</a>
+<div class="flex gap-8 items-center h-full">
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors duration-300 px-4 py-2 rounded-lg flex items-center h-full" href="index.html">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors duration-300 px-4 py-2 rounded-lg flex items-center h-full" href="glossary.html">Glossary</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors duration-300 px-4 py-2 rounded-lg flex items-center h-full" href="library.html">Library</a>
+</div>
+<div class="flex gap-4">
+<button aria-label="settings" onclick="window.location.href='settings.html'" class="text-primary p-2 rounded-full hover:bg-surface-variant/50 transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Mobile Header (Simplified for Settings) -->
+<header class="md:hidden flex items-center justify-between p-6 bg-surface-container-lowest border-b border-surface-variant">
+<button aria-label="Go back" class="p-2 -ml-2 text-on-surface-variant rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">Settings</h1>
+<div class="w-10"></div> <!-- Spacer for center alignment -->
+</header>
+<main class="max-w-3xl mx-auto px-margin pt-md pb-xl">
+<div class="hidden md:block mb-10">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Reading Settings</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Customize your reading environment for optimal comfort and focus.</p>
+</div>
+<div class="grid grid-cols-1 gap-8">
+<!-- Theme Base Section -->
+<section class="bg-surface-container-low rounded-xl p-md shadow-sm border border-surface-variant">
+<div class="flex items-center gap-3 mb-6 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-primary p-2 bg-primary-container/30 rounded-full" data-icon="palette">palette</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Theme Base</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><label class="relative flex flex-col items-center justify-center p-6 rounded-xl border-2 border-primary bg-[#FDFBF7] shadow-sm cursor-pointer hover:opacity-90 transition-all">
+<input checked="" class="sr-only" name="theme" type="radio" value="soft_cream"/>
+<div class="w-full h-24 rounded-lg bg-[#FDFBF7] border border-surface-variant mb-4 flex flex-col items-center justify-center gap-2">
+<div class="h-2 w-1/2 bg-[#2D3142]/20 rounded"></div>
+<div class="h-2 w-2/3 bg-[#2D3142]/20 rounded"></div>
+</div>
+<span class="font-label-lg text-label-lg text-[#2D3142]">Soft Cream</span>
+<div class="absolute top-4 right-4 text-primary">
+<span class="material-symbols-outlined" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+<label class="relative flex flex-col items-center justify-center p-6 rounded-xl border-2 border-surface-variant bg-[#2D3142] cursor-pointer hover:opacity-90 transition-all">
+<input class="sr-only" name="theme" type="radio" value="deep_slate"/>
+<div class="w-full h-24 rounded-lg bg-[#2D3142] border border-white/10 mb-4 flex flex-col items-center justify-center gap-2">
+<div class="h-2 w-1/2 bg-white/20 rounded"></div>
+<div class="h-2 w-2/3 bg-white/20 rounded"></div>
+</div>
+<span class="font-label-lg text-label-lg text-white">Deep Slate</span>
+<div class="absolute top-4 right-4 text-primary" style="display:none;">
+<span class="material-symbols-outlined" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label></div>
+</section>
+<!-- Reading Flow Section -->
+<section class="bg-surface-container-low rounded-xl p-md shadow-sm border border-surface-variant">
+<div class="flex items-center gap-3 mb-6 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-primary p-2 bg-primary-container/30 rounded-full" data-icon="format_line_spacing">format_line_spacing</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Reading Flow</h2>
+</div>
+<div class="space-y-6">
+<div>
+<p class="font-label-lg text-label-lg text-on-surface-variant mb-4">Line Spacing</p>
+<div class="flex flex-col sm:flex-row gap-4"><label class="flex-1">
+<input class="peer sr-only" name="line_spacing" type="radio" value="standard"/>
+<div class="p-4 rounded-xl border-2 border-surface-variant bg-surface-container-lowest text-center cursor-pointer hover:bg-surface peer-checked:border-primary peer-checked:bg-primary-container/20 transition-all">
+<div class="mb-4 text-left p-2 rounded bg-background/50" data-preview-spacing style="line-height: 1.4;">
+<p class="text-[10px] text-on-surface-variant font-body-md uppercase tracking-widest mb-1 opacity-50" data-preview-spacing style="line-height: 1.2;">Preview</p>
+<p class="text-xs text-on-surface" data-preview-spacing style="line-height: 1.4;">Sample text showing standard spacing. Focus and clarity are key for reading.</p>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface-variant peer-checked:text-on-surface">Standard (1.4x)</p>
+</div>
+</label>
+<label class="flex-1">
+<input checked="" class="peer sr-only" name="line_spacing" type="radio" value="relaxed"/>
+<div class="p-4 rounded-xl border-2 border-surface-variant bg-surface-container-lowest text-center cursor-pointer hover:bg-surface peer-checked:border-primary peer-checked:bg-primary-container/20 transition-all">
+<div class="mb-4 text-left p-2 rounded bg-background/50" data-preview-spacing style="line-height: 1.8;">
+<p class="text-[10px] text-on-surface-variant font-body-md uppercase tracking-widest mb-1 opacity-50" data-preview-spacing style="line-height: 1.2;">Preview</p>
+<p class="text-xs text-on-surface" data-preview-spacing style="line-height: 1.8;">Relaxed spacing provides more room for your eyes to travel across lines comfortably.</p>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface">Relaxed (1.8x)</p>
+</div>
+</label>
+<label class="flex-1">
+<input class="peer sr-only" name="line_spacing" type="radio" value="loose"/>
+<div class="p-4 rounded-xl border-2 border-surface-variant bg-surface-container-lowest text-center cursor-pointer hover:bg-surface peer-checked:border-primary peer-checked:bg-primary-container/20 transition-all">
+<div class="mb-4 text-left p-2 rounded bg-background/50" data-preview-spacing style="line-height: 2.2;">
+<p class="text-[10px] text-on-surface-variant font-body-md uppercase tracking-widest mb-1 opacity-50" data-preview-spacing style="line-height: 1.2;">Preview</p>
+<p class="text-xs text-on-surface" data-preview-spacing style="line-height: 2.2;">Loose spacing is ideal for users who benefit from maximum separation between lines of text.</p>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface-variant peer-checked:text-on-surface">Loose (2.2x)</p>
+</div>
+</label></div>
+</div>
+</div>
+</section>
+<!-- Bionic Reading Section -->
+<section class="bg-surface-container-low rounded-xl p-md shadow-sm border border-surface-variant">
+<div class="flex items-center justify-between mb-6 border-b border-surface-variant pb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary p-2 bg-primary-container/30 rounded-full" data-icon="auto_stories">auto_stories</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Bionic Reading</h2>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input id="bionicEnableToggle" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="space-y-4">
+<p class="font-body-md text-sm text-on-surface-variant">Bionic Reading bolds the first part of every word to guide your eyes and improve reading speed and focus.</p>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-surface-variant">
+<p id="bionicPreview" class="text-sm text-on-surface font-body-md"><b>Bio</b>nic <b>Rea</b>ding <b>hel</b>ps <b>yo</b>u <b>re</b>ad <b>fas</b>ter <b>b</b>y <b>guid</b>ing <b>yo</b>ur <b>ey</b>es <b>wi</b>th <b>artif</b>icial <b>fixa</b>tion <b>poin</b>ts.</p>
+</div>
+</div>
+</section>
+<!-- Reading Ruler Section -->
+<section class="bg-surface-container-low rounded-xl p-md shadow-sm border border-surface-variant">
+<div class="flex items-center justify-between mb-6 border-b border-surface-variant pb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary p-2 bg-primary-container/30 rounded-full" data-icon="view_stream">view_stream</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Reading Ruler</h2>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input id="rulerEnableToggle" checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="space-y-8">
+<div>
+<p class="font-label-lg text-label-lg text-on-surface-variant mb-4">Highlight Color</p>
+<div class="flex gap-4 flex-wrap">
+<button aria-label="Yellow highlight" class="w-12 h-12 rounded-full bg-[#fef08a] border-2 border-transparent shadow-sm hover:scale-105 transition-transform focus:outline-none">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>
+</button>
+<button aria-label="Blue highlight" class="w-12 h-12 rounded-full bg-[#bfdbfe] border-2 border-transparent shadow-sm hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-low"></button>
+<button aria-label="Green highlight" class="w-12 h-12 rounded-full bg-primary-container border-2 border-primary flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-low">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>
+</button>
+<button aria-label="Pink highlight" class="w-12 h-12 rounded-full bg-[#fbcfe8] border-2 border-transparent shadow-sm hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-low"></button>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-4">
+<p class="font-label-lg text-label-lg text-on-surface-variant">Ruler Height</p>
+<span class="font-body-md text-body-md text-on-surface">Medium</span>
+</div>
+<input id="rulerHeightSlider" class="w-full h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="3" min="1" step="0.5" type="range" value="2"/>
+<div class="flex justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span>Narrow</span>
+<span>Wide</span>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-variant">
+<p class="font-label-lg text-label-lg text-on-surface-variant mb-4">Live Preview</p>
+<div class="relative bg-surface-container-lowest p-6 rounded-xl border border-surface-variant overflow-hidden"><!-- Ruler Overlay with animation -->
+<div id="rulerLivePreview" class="absolute left-0 right-0 top-1/2 -translate-y-1/2 bg-primary-container/40 border-y-2 border-primary/30 pointer-events-none z-10" style="height: 36px;">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent w-1/2 animate-[scan_3s_ease-in-out_infinite]"></div>
+</div>
+<!-- Sample Text -->
+<div class="relative z-0 space-y-3">
+<p class="text-sm text-on-surface opacity-80 font-body-md">The reading ruler helps you maintain focus by highlighting one line at a time. This reduces visual stress and prevents losing your place while reading long passages of text.</p>
+<p class="text-sm text-on-surface opacity-80 font-body-md">You can customize the ruler's height and color to best suit your personal preference and lighting conditions. Try different combinations to find your perfect setup.</p>
+</div></div>
+<p class="mt-2 text-[10px] text-center text-on-surface-variant opacity-60 italic">Ruler position is for demonstration only</p>
+</div></div>
+</section>
+
+<!-- API Configuration Section -->
+<section class="bg-surface-container-low rounded-xl p-md shadow-sm border border-surface-variant mb-8">
+<div class="flex items-center gap-3 mb-6 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-primary p-2 bg-primary-container/30 rounded-full" data-icon="key">key</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">API Configuration</h2>
+</div>
+<div class="space-y-4">
+<p class="font-body-md text-sm text-on-surface-variant">Enter your Google Gemini API Key. This key is saved locally on your device and is never sent to our servers.</p>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface-variant mb-2">Google Gemini API Key</p>
+<div class="flex gap-2">
+<input id="apiKeyInput" type="password" class="w-full bg-surface-container-lowest border border-surface-variant rounded-xl p-4 font-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="AIzaSy..."/>
+<button id="saveApiKeyBtn" class="bg-primary text-on-primary font-label-lg rounded-xl py-2 px-6 shadow-sm hover:opacity-90 transition-all flex items-center justify-center min-w-[120px]">
+    Save
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Advanced AI Settings Section -->
+<section class="bg-surface-container-low rounded-xl p-md shadow-sm border border-surface-variant">
+<div class="flex items-center justify-between mb-0 border-b border-surface-variant pb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary p-2 bg-primary-container/30 rounded-full" data-icon="smart_toy">smart_toy</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">AI Simplification Style</h2>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input id="advancedAIToggle" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div id="advancedAIBody" class="space-y-4 mt-6 hidden">
+<p class="font-body-md text-sm text-on-surface-variant">Tell the AI how you want text simplified. This instruction is sent along with every text you process.</p>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface-variant mb-2">Custom AI Instructions</p>
+<textarea id="masterPromptInput" rows="3" class="w-full bg-surface-container-lowest border border-surface-variant rounded-xl p-4 font-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder='e.g., "Explain like I am 10 years old" or "Use bullet points and short sentences"'></textarea>
+<div class="mt-4 flex justify-end">
+    <button id="savePromptBtn" class="bg-primary text-on-primary font-label-lg rounded-lg py-2 px-6 shadow-sm hover:opacity-90 transition-all flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">save</span>
+        <span>Save Instructions</span>
+    </button>
+</div>
+</div>
+</div>
+</section>
+
+</div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const masterPromptInput = document.getElementById('masterPromptInput');
+        const savePromptBtn = document.getElementById('savePromptBtn');
+        const advancedAIToggle = document.getElementById('advancedAIToggle');
+        const advancedAIBody = document.getElementById('advancedAIBody');
+        
+        const apiKeyInput = document.getElementById('apiKeyInput');
+        const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
+
+        const themeRadios = document.querySelectorAll('input[name="theme"]');
+        const lineSpacingRadios = document.querySelectorAll('input[name="line_spacing"]');
+        const rulerEnableToggle = document.getElementById('rulerEnableToggle');
+        const bionicEnableToggle = document.getElementById('bionicEnableToggle');
+        const bionicPreview = document.getElementById('bionicPreview');
+        
+        const rulerColorBtns = document.querySelectorAll('button[aria-label*="highlight"]');
+        const rulerHeightSlider = document.getElementById('rulerHeightSlider');
+        const livePreviewRuler = document.getElementById('rulerLivePreview');
+
+        let selectedRulerColor = localStorage.getItem('lexiRead_rulerColor') || '#B5D99C';
+        const originalBionicText = "Bionic Reading helps you read faster by guiding your eyes with artificial fixation points.";
+
+        // --- Helpers ---
+        function triggerGlobalRefresh() {
+            if (window.refreshAccessibility) {
+                window.refreshAccessibility();
+            } else {
+                // Fallback: If global script isn't ready, try again in a bit
+                setTimeout(() => {
+                    if (window.refreshAccessibility) window.refreshAccessibility();
+                }, 100);
+            }
+        }
+
+        function getHeightLabel(val) {
+            const v = parseFloat(val);
+            if (v <= 1.3) return 'Narrow';
+            if (v >= 2.7) return 'Wide';
+            return 'Medium';
+        }
+
+        function hexToRgba(hex, alpha) {
+            if (!hex || !hex.startsWith('#')) return `rgba(181,217,156,${alpha})`;
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r},${g},${b},${alpha})`;
+        }
+
+        function updateRadioUI(name) {
+            const radios = document.querySelectorAll(`input[name="${name}"]`);
+            radios.forEach(radio => {
+                const label = radio.closest('label');
+                if (!label) return;
+                const isChecked = radio.checked;
+
+                if (name === 'theme') {
+                    // Theme cards: border is on the label itself
+                    if (isChecked) {
+                        label.classList.remove('border-surface-variant');
+                        label.classList.add('border-primary');
+                    } else {
+                        label.classList.remove('border-primary');
+                        label.classList.add('border-surface-variant');
+                    }
+                }
+                // line_spacing: Tailwind peer-checked handles border on the inner div automatically
+
+                // Checkmark icon (theme cards only)
+                const checkIcon = label.querySelector('.material-symbols-outlined[data-icon="check_circle"]');
+                if (checkIcon) {
+                    checkIcon.parentElement.style.display = isChecked ? 'block' : 'none';
+                }
+            });
+        }
+
+        function getHexFromLabel(label) {
+            if (!label) return '#B5D99C';
+            if (label.includes('Yellow')) return '#fef08a';
+            if (label.includes('Blue')) return '#bfdbfe';
+            if (label.includes('Green')) return '#B5D99C';
+            if (label.includes('Pink')) return '#fbcfe8';
+            return '#B5D99C';
+        }
+
+        function updateRulerColorUI(color) {
+            selectedRulerColor = color;
+            rulerColorBtns.forEach(btn => {
+                const btnColor = getHexFromLabel(btn.getAttribute('aria-label'));
+                const isSelected = btnColor.toLowerCase() === color.toLowerCase();
+                btn.innerHTML = isSelected ? '<span class="material-symbols-outlined text-primary text-sm">check</span>' : '';
+                if (isSelected) {
+                    btn.classList.remove('border-transparent');
+                    btn.classList.add('border-primary');
+                } else {
+                    btn.classList.remove('border-primary');
+                    btn.classList.add('border-transparent');
+                }
+            });
+            if (livePreviewRuler) {
+                livePreviewRuler.style.backgroundColor = hexToRgba(color, 0.3);
+                livePreviewRuler.style.borderColor = hexToRgba(color, 0.5);
+            }
+        }
+
+        function updateLivePreviewHeight(val) {
+            if (livePreviewRuler) {
+                const v = parseFloat(val);
+                // Match global script: 1→24px, 2→38px, 3→52px
+                const px = Math.round(24 + (v - 1) * 14);
+                livePreviewRuler.style.height = px + 'px';
+            }
+            const heightLabelEl = document.querySelector('.flex.justify-between.items-center.mb-4');
+            if (heightLabelEl) {
+                const span = heightLabelEl.querySelector('span:last-child');
+                if (span) span.textContent = getHeightLabel(val);
+            }
+        }
+
+        function updateBionicPreview() {
+            if (!bionicPreview) return;
+            if (bionicEnableToggle.checked && typeof window.applyBionic === 'function') {
+                bionicPreview.innerHTML = window.applyBionic(originalBionicText);
+            } else {
+                bionicPreview.innerHTML = originalBionicText;
+            }
+        }
+
+        // --- Load Saved Settings ---
+        const savedApiKey = localStorage.getItem('lexiRead_apiKey');
+        if (savedApiKey) apiKeyInput.value = savedApiKey;
+
+        const savedPrompt = localStorage.getItem('lexiRead_masterPrompt');
+        if (savedPrompt) masterPromptInput.value = savedPrompt;
+
+        // Advanced AI toggle
+        const savedAIToggle = localStorage.getItem('lexiRead_advancedAI') === 'true';
+        if (advancedAIToggle) {
+            advancedAIToggle.checked = savedAIToggle;
+            advancedAIBody.classList.toggle('hidden', !savedAIToggle);
+        }
+
+        const savedTheme = localStorage.getItem('lexiRead_theme') || 'soft_cream';
+        themeRadios.forEach(r => r.checked = (r.value === savedTheme));
+        updateRadioUI('theme');
+
+        const savedSpacing = localStorage.getItem('lexiRead_lineSpacing') || 'relaxed';
+        lineSpacingRadios.forEach(r => r.checked = (r.value === savedSpacing));
+        updateRadioUI('line_spacing');
+
+        const savedRuler = localStorage.getItem('lexiRead_ruler') === 'true';
+        if (rulerEnableToggle) rulerEnableToggle.checked = savedRuler;
+
+        const savedBionic = localStorage.getItem('lexiRead_bionic') === 'true';
+        if (bionicEnableToggle) bionicEnableToggle.checked = savedBionic;
+        
+        // Wait for potential script load for bionic
+        setTimeout(updateBionicPreview, 50);
+
+        updateRulerColorUI(selectedRulerColor);
+
+        const savedHeight = localStorage.getItem('lexiRead_rulerHeight') || '2';
+        if (rulerHeightSlider) {
+            rulerHeightSlider.value = savedHeight;
+            updateLivePreviewHeight(savedHeight);
+        }
+
+        // --- Event Listeners ---
+        themeRadios.forEach(r => {
+            r.addEventListener('change', (e) => {
+                localStorage.setItem('lexiRead_theme', e.target.value);
+                triggerGlobalRefresh();
+                updateRadioUI('theme');
+            });
+        });
+
+        lineSpacingRadios.forEach(r => {
+            r.addEventListener('change', (e) => {
+                localStorage.setItem('lexiRead_lineSpacing', e.target.value);
+                triggerGlobalRefresh();
+                updateRadioUI('line_spacing');
+            });
+        });
+
+        rulerColorBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const color = getHexFromLabel(btn.getAttribute('aria-label'));
+                localStorage.setItem('lexiRead_rulerColor', color);
+                updateRulerColorUI(color);
+                triggerGlobalRefresh();
+            });
+        });
+
+        if (rulerHeightSlider) {
+            rulerHeightSlider.addEventListener('input', (e) => {
+                localStorage.setItem('lexiRead_rulerHeight', e.target.value);
+                updateLivePreviewHeight(e.target.value);
+                triggerGlobalRefresh();
+            });
+        }
+
+        if (rulerEnableToggle) {
+            rulerEnableToggle.addEventListener('change', () => {
+                localStorage.setItem('lexiRead_ruler', rulerEnableToggle.checked);
+                triggerGlobalRefresh();
+            });
+        }
+
+        if (bionicEnableToggle) {
+            bionicEnableToggle.addEventListener('change', () => {
+                localStorage.setItem('lexiRead_bionic', bionicEnableToggle.checked);
+                updateBionicPreview();
+            });
+        }
+
+        if (advancedAIToggle) {
+            advancedAIToggle.addEventListener('change', () => {
+                const isOn = advancedAIToggle.checked;
+                localStorage.setItem('lexiRead_advancedAI', isOn);
+                advancedAIBody.classList.toggle('hidden', !isOn);
+                // When toggled off, clear custom prompt so it won't affect AI
+                if (!isOn) {
+                    localStorage.removeItem('lexiRead_masterPrompt');
+                    masterPromptInput.value = '';
+                }
+            });
+        }
+
+        savePromptBtn.addEventListener('click', () => {
+            const promptValue = masterPromptInput.value.trim();
+            if (promptValue) localStorage.setItem('lexiRead_masterPrompt', promptValue);
+            else localStorage.removeItem('lexiRead_masterPrompt');
+
+            const originalText = savePromptBtn.querySelector('span:last-child').innerText;
+            savePromptBtn.querySelector('span:last-child').innerText = "Saved!";
+            savePromptBtn.classList.remove('bg-primary');
+            savePromptBtn.classList.add('bg-green-600');
+
+            setTimeout(() => {
+                savePromptBtn.querySelector('span:last-child').innerText = originalText;
+                savePromptBtn.classList.add('bg-primary');
+                savePromptBtn.classList.remove('bg-green-600');
+            }, 2000);
+        });
+
+        saveApiKeyBtn.addEventListener('click', () => {
+            const apiKeyValue = apiKeyInput.value.trim();
+            if (apiKeyValue) localStorage.setItem('lexiRead_apiKey', apiKeyValue);
+            else localStorage.removeItem('lexiRead_apiKey');
+
+            const originalText = saveApiKeyBtn.innerText;
+            saveApiKeyBtn.innerText = "Saved!";
+            saveApiKeyBtn.classList.remove('bg-primary');
+            saveApiKeyBtn.classList.add('bg-green-600');
+
+            setTimeout(() => {
+                saveApiKeyBtn.innerText = originalText;
+                saveApiKeyBtn.classList.add('bg-primary');
+                saveApiKeyBtn.classList.remove('bg-green-600');
+            }, 2000);
+        });
+
+        const goBackBtn = document.querySelector('button[aria-label="Go back"]');
+        if (goBackBtn) {
+            goBackBtn.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        }
+    });
+</script>
+<script src="selection_toolbar.js"></script>
+</body></html>

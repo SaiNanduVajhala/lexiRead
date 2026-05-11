@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>lexiRead - Your Library</title>
+<script src="accessibility_global.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+        font-family: 'Material Symbols Outlined';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+    }
+</style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-background": "#2D3142",
+                "inverse-on-surface": "#f5f0e7",
+                "tertiary-fixed-dim": "#f6b3d6",
+                "inverse-primary": "#add195",
+                "tertiary-fixed": "#ffd8ea",
+                "surface-container-lowest": "#ffffff",
+                "surface-tint": "#486735",
+                "primary-container": "#B5D99C",
+                "on-primary-fixed": "#082100",
+                "secondary": "#5a5d70",
+                "primary-fixed": "#c9edaf",
+                "on-error": "#ffffff",
+                "surface-container-high": "#ece8df",
+                "tertiary": "#834d6b",
+                "on-tertiary-fixed": "#350a26",
+                "surface-bright": "#FDFBF7",
+                "inverse-surface": "#32302a",
+                "background": "#FDFBF7",
+                "tertiary-container": "#ffbbde",
+                "primary-fixed-dim": "#add195",
+                "outline": "#74796d",
+                "on-secondary-fixed-variant": "#424658",
+                "on-primary-fixed-variant": "#314e20",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed": "#dee1f8",
+                "error-container": "#ffdad6",
+                "surface": "#FDFBF7",
+                "error": "#ba1a1a",
+                "on-surface-variant": "#43483e",
+                "on-tertiary-container": "#7c4765",
+                "secondary-container": "#dee1f8",
+                "surface-container-low": "#f7f3ea",
+                "on-primary-container": "#41602f",
+                "outline-variant": "#c3c8bb",
+                "surface-variant": "#e6e2d9",
+                "surface-container": "#f2ede4",
+                "primary": "#B5D99C",
+                "on-error-container": "#93000a",
+                "surface-container-highest": "#e6e2d9",
+                "on-tertiary-fixed-variant": "#683653",
+                "on-primary": "#ffffff",
+                "on-surface": "#2D3142",
+                "secondary-fixed-dim": "#c2c5db",
+                "on-secondary-container": "#606376",
+                "on-secondary-fixed": "#171b2b",
+                "surface-dim": "#dedad1",
+                "on-secondary": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "lg": "40px",
+                "xl": "64px",
+                "margin": "32px",
+                "xs": "4px",
+                "base": "8px",
+                "md": "24px",
+                "gutter": "24px",
+                "sm": "12px"
+        },
+        "fontFamily": {
+                "label-lg": ["Atkinson Hyperlegible", "sans-serif"],
+                "body-lg": ["Atkinson Hyperlegible", "sans-serif"],
+                "label-sm": ["Atkinson Hyperlegible", "sans-serif"],
+                "headline-md": ["Atkinson Hyperlegible", "sans-serif"],
+                "headline-lg": ["Atkinson Hyperlegible", "sans-serif"],
+                "body-md": ["Atkinson Hyperlegible", "sans-serif"]
+        },
+        "fontSize": {
+                "label-lg": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "1.8", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "1.8", "fontWeight": "400"}]
+        }
+      },
+    },
+  }
+</script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- TopNavBar — same as index.html -->
+<nav class="bg-surface-container-lowest/80 backdrop-blur-sm border-b border-surface-variant/50 docked full-width top-0 w-full z-50">
+<div class="flex justify-between items-center h-20 px-8 max-w-5xl mx-auto w-full">
+    <a href="index.html" class="text-2xl font-bold text-primary font-headline-md hover:opacity-80 transition-opacity">lexiRead</a>
+    <!-- Navigation Links -->
+    <div class="hidden md:flex gap-8 items-center h-full">
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 px-4 h-full flex items-center font-label-lg" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 px-4 h-full flex items-center font-label-lg" href="glossary.html">Glossary</a>
+        <a class="text-on-surface border-b-2 border-primary px-4 h-full flex items-center font-label-lg transition-colors duration-300" href="library.html">Library</a>
+    </div>
+    <div class="flex items-center">
+        <button aria-label="Settings" onclick="window.location.href='settings.html'" class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-300 rounded-full flex items-center gap-2">
+            <span class="material-symbols-outlined" data-icon="settings">settings</span>
+            <span class="hidden md:inline font-label-lg">Settings</span>
+        </button>
+    </div>
+</div>
+</nav>
+
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center p-margin md:p-xl w-full max-w-5xl mx-auto">
+
+    <!-- Page Header -->
+    <div class="w-full mb-8">
+        <h1 class="font-headline-lg text-on-surface mb-1">Your Library</h1>
+        <p class="font-body-md text-on-surface-variant">Manage and revisit your simplified readings.</p>
+    </div>
+
+    <!-- Search & Actions Bar -->
+    <div class="w-full bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-variant/50 p-md mb-6 flex flex-wrap gap-sm items-center justify-between">
+        <!-- Search -->
+        <div class="relative flex-grow min-w-[180px]">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+            <input
+                id="librarySearch"
+                type="text"
+                placeholder="Search readings..."
+                class="w-full pl-10 pr-4 py-2 bg-surface-container rounded-lg border border-surface-variant focus:border-on-surface-variant focus:outline-none font-body-md text-on-surface placeholder:text-on-surface-variant/50 transition-colors"
+            />
+        </div>
+
+        <!-- Sort & Clear -->
+        <div class="flex gap-sm items-center">
+            <div class="relative">
+                <select id="librarySort" style="padding: 8px 36px 8px 14px; appearance: none; -webkit-appearance: none; background: #f2ede4; border: 1px solid #e6e2d9; border-radius: 8px; font-size: 14px; color: #2D3142; cursor: pointer; outline: none;">
+                    <option value="date_desc">Newest First</option>
+                    <option value="date_asc">Oldest First</option>
+                    <option value="title_asc">Title A–Z</option>
+                    <option value="title_desc">Title Z–A</option>
+                </select>
+                <span class="material-symbols-outlined pointer-events-none text-on-surface-variant" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:18px; line-height:1;">expand_more</span>
+            </div>
+            <button id="clearLibraryBtn" class="px-md py-2 text-error font-label-lg hover:bg-error-container rounded-lg transition-colors">
+                Clear All
+            </button>
+        </div>
+    </div>
+
+    <!-- Library Grid -->
+    <section id="libraryGrid" class="w-full grid grid-cols-1 md:grid-cols-2 gap-gutter">
+        <!-- Cards injected here -->
+    </section>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const libraryGrid = document.getElementById('libraryGrid');
+
+    // Compute a clean display title: prefer AI title, then stored title, then first sentence
+    function getDisplayTitle(item) {
+        // 1. AI-generated title (new entries)
+        if (item.data?.title) return item.data.title;
+        // 2. Stored title from save time (old entries)
+        if (item.title && item.title !== 'Untitled Reading') return item.title;
+        // 3. Fallback: extract first sentence from summary
+        const summary = (item.data?.simplified_summary || item.data?.summary || '').trim();
+        if (!summary) return 'Untitled Reading';
+        const match = summary.match(/^(.+?[.!?])\s/);
+        const firstSentence = match ? match[1].trim() : summary.trim();
+        return firstSentence.length > 70
+            ? firstSentence.substring(0, 67) + '...'
+            : firstSentence || 'Untitled Reading';
+    }
+
+    function renderLibrary() {
+        let library = JSON.parse(localStorage.getItem('lexiRead_library') || '[]');
+
+        const query = document.getElementById('librarySearch').value.toLowerCase();
+        const sortVal = document.getElementById('librarySort').value;
+
+        if (query) {
+            library = library.filter(item => {
+                const titleText = getDisplayTitle(item).toLowerCase();
+                const summaryText = ((item.data && item.data.simplified_summary) || '').toLowerCase();
+                return titleText.includes(query) || summaryText.includes(query);
+            });
+        }
+
+        library.sort((a, b) => {
+            const getTime = item => item.isoDate ? new Date(item.isoDate).getTime() : parseInt(item.id || '0', 10);
+            if (sortVal === 'date_desc') return getTime(b) - getTime(a);
+            if (sortVal === 'date_asc') return getTime(a) - getTime(b);
+            if (sortVal === 'title_asc') return getDisplayTitle(a).localeCompare(getDisplayTitle(b));
+            if (sortVal === 'title_desc') return getDisplayTitle(b).localeCompare(getDisplayTitle(a));
+            return 0;
+        });
+
+        libraryGrid.innerHTML = '';
+
+        if (library.length === 0) {
+            libraryGrid.innerHTML = `
+                <div class="col-span-full py-16 text-center flex flex-col items-center gap-3">
+                    <span class="material-symbols-outlined text-5xl text-on-surface-variant/40">library_books</span>
+                    <h2 class="font-headline-md text-on-surface">No readings yet</h2>
+                    <p class="font-body-md text-on-surface-variant">Go to the home page and simplify some text to fill your library.</p>
+                    <button onclick="window.location.href='index.html'" class="mt-2 bg-primary-container text-on-primary-container font-label-lg py-3 px-8 rounded-full hover:opacity-90 transition-opacity">
+                        Start Reading
+                    </button>
+                </div>
+            `;
+            return;
+        }
+
+
+        library.forEach((item, index) => {
+            const summary = item.data?.simplified_summary || item.data?.summary || '';
+            const displayTitle = getDisplayTitle(item);
+            const bTitle = window.applyBionic ? window.applyBionic(displayTitle) : displayTitle;
+            const bSummary = window.applyBionic ? window.applyBionic(summary) : summary;
+
+            const cardHTML = `
+                <article class="bg-surface-container-lowest rounded-2xl shadow-sm border-2 border-primary/20 hover:border-primary/60 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col p-md gap-sm">
+                    <!-- Card Header -->
+                    <div class="flex justify-between items-start">
+                        <div class="inline-flex items-center gap-1 bg-primary/10 text-on-primary-container px-sm py-xs rounded-full font-label-sm">
+                            <span class="material-symbols-outlined text-[14px]">auto_stories</span>
+                            Simplified Reading
+                        </div>
+                        <span class="font-label-sm text-on-surface-variant">${item.date || ''}</span>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="flex-grow space-y-3">
+                        <h2 class="text-[20px] font-bold text-on-surface leading-snug border-l-[3px] border-primary pl-3">${bTitle}</h2>
+                        <p class="text-[13px] text-on-surface-variant/70 line-clamp-3 leading-relaxed tracking-wide">${bSummary}</p>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="h-px w-full bg-surface-variant/60"></div>
+
+                    <!-- Card Footer -->
+                    <div class="flex justify-between items-center pt-xs">
+                        <button onclick="readItem('${item.id}')" class="flex items-center gap-sm font-label-lg text-on-primary-container bg-primary-container px-md py-2 rounded-full hover:opacity-90 transition-opacity">
+                            <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+                            Read Now
+                        </button>
+                        <button onclick="deleteItem('${item.id}')" aria-label="Delete reading" class="flex items-center gap-xs font-label-sm text-on-surface-variant hover:text-error hover:bg-error-container px-sm py-2 rounded-full transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">delete</span>
+                            Remove
+                        </button>
+                    </div>
+                </article>
+            `;
+            libraryGrid.insertAdjacentHTML('beforeend', cardHTML);
+        });
+    }
+
+    window.readItem = (id) => {
+        const library = JSON.parse(localStorage.getItem('lexiRead_library') || '[]');
+        const item = library.find(i => i.id === id);
+        if (item) {
+            sessionStorage.setItem('simplifiedData', JSON.stringify(item.data));
+            window.location.href = 'reading_view.html';
+        }
+    };
+
+    window.deleteItem = (id) => {
+        if (confirm('Remove this reading from your library?')) {
+            let library = JSON.parse(localStorage.getItem('lexiRead_library') || '[]');
+            library = library.filter(i => i.id !== id);
+            localStorage.setItem('lexiRead_library', JSON.stringify(library));
+            renderLibrary();
+        }
+    };
+
+    document.getElementById('librarySearch').addEventListener('input', renderLibrary);
+    document.getElementById('librarySort').addEventListener('change', renderLibrary);
+
+    document.getElementById('clearLibraryBtn').addEventListener('click', () => {
+        if (confirm('Clear your entire library? This cannot be undone.')) {
+            localStorage.removeItem('lexiRead_library');
+            renderLibrary();
+        }
+    });
+
+    renderLibrary();
+});
+</script>
+<script src="selection_toolbar.js"></script>
+</body></html>

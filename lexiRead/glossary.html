@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>lexiRead - Instant Glossary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="accessibility_global.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f5f0e7",
+                        "primary-container": "#c8e8b2",
+                        "background": "#FDFBF7",
+                        "primary": "#B5D99C",
+                        "on-surface": "#2D3142",
+                        "on-secondary-fixed-variant": "#424658",
+                        "surface-dim": "#dedad1",
+                        "on-secondary-fixed": "#171b2b",
+                        "inverse-primary": "#add195",
+                        "surface-container": "#F5F2E9",
+                        "surface-container-low": "#FAFAF2",
+                        "on-primary-fixed-variant": "#314e20",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface": "#FDFBF7",
+                        "on-secondary-container": "#606376",
+                        "tertiary-fixed": "#ffd8ea",
+                        "secondary-fixed": "#dee1f8",
+                        "primary-fixed": "#c9edaf",
+                        "surface-bright": "#fdf9f0",
+                        "on-error-container": "#93000a",
+                        "secondary": "#5a5d70",
+                        "on-background": "#2D3142",
+                        "surface-container-highest": "#E5E3D8",
+                        "on-tertiary-fixed-variant": "#683653",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#7c4765",
+                        "on-primary-container": "#111b0c",
+                        "on-tertiary-fixed": "#350a26",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#dee1f8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#F5F2E9",
+                        "surface-container-high": "#EDEBE0",
+                        "outline-variant": "#D0D2DC",
+                        "inverse-surface": "#32302a",
+                        "surface-tint": "#B5D99C",
+                        "outline": "#9295A3",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#f6b3d6",
+                        "on-surface-variant": "#4F5361",
+                        "tertiary": "#834d6b",
+                        "tertiary-container": "#ffbbde",
+                        "primary-fixed-dim": "#add195",
+                        "on-primary-fixed": "#082100",
+                        "secondary-fixed-dim": "#c2c5db",
+                        "on-primary": "#1a2514"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "md": "24px",
+                        "xl": "64px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Atkinson Hyperlegible", "sans-serif"],
+                        "label-sm": ["Atkinson Hyperlegible", "sans-serif"],
+                        "label-lg": ["Atkinson Hyperlegible", "sans-serif"],
+                        "headline-md": ["Atkinson Hyperlegible", "sans-serif"],
+                        "body-lg": ["Atkinson Hyperlegible", "sans-serif"],
+                        "headline-lg": ["Atkinson Hyperlegible", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.8", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.04em", "fontWeight": "700" }],
+                        "label-lg": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.8", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.4", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen pb-32">
+<!-- TopNavBar Component -->
+<nav class="bg-surface-container-lowest docked full-width top-0 border-b border-surface-container-high shadow-sm shadow-stone-200/40 z-50 sticky hidden md:flex">
+<div class="flex justify-between items-center h-20 px-8 max-w-5xl mx-auto w-full">
+<a href="index.html" class="text-2xl font-bold text-primary hover:opacity-80 transition-opacity">lexiRead</a>
+<div class="flex space-x-8">
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-300" href="index.html">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:bg-surface-container-low transition-colors duration-300 opacity-90" href="glossary.html">Glossary</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-300" href="library.html">Library</a>
+</div>
+<div class="flex space-x-4">
+<button onclick="window.location.href='settings.html'" class="text-primary hover:bg-surface-container-low transition-colors duration-300 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="max-w-5xl mx-auto px-margin pt-xl">
+<!-- Header & Search -->
+<header class="mb-lg relative">
+<div id="backToReadingBtn" class="hidden mb-4">
+    <button class="flex items-center gap-2 text-primary hover:text-primary/80 font-bold transition-colors" onclick="window.history.back()">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Back to Reading
+    </button>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Interactive Glossary</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-md">Search or browse for words and their meanings in a calm, clear format.</p>
+<div class="relative w-full max-w-2xl">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</div>
+<input id="searchInput" aria-label="Search Glossary" class="w-full pl-12 pr-28 py-4 bg-surface-container-lowest rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface placeholder-on-surface-variant transition-colors min-h-[56px] shadow-sm" placeholder="Search for a word..." type="text"/>
+<div class="absolute inset-y-0 right-2 flex items-center">
+<button id="searchBtn" class="bg-primary-container text-on-primary-container hover:bg-[#a4cd8b] px-6 py-2 rounded-md font-bold transition-colors h-[40px] flex items-center">Search</button>
+</div>
+</div>
+</header>
+<!-- Loading State -->
+<section id="loadingState" class="hidden mb-xl">
+    <div class="flex items-center gap-4 text-on-surface-variant p-6 bg-surface-container-lowest rounded-xl border-2 border-primary/40 shadow-sm">
+        <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+        <p class="font-body-lg">Looking up definition...</p>
+    </div>
+</section>
+
+<!-- Current Lookup -->
+<section id="currentLookupContainer" class="mb-xl hidden">
+    <h2 class="font-label-lg text-on-surface-variant mb-4 uppercase tracking-widest">Search Result</h2>
+    <div id="currentLookupCard" class="grid grid-cols-1 gap-gutter"></div>
+</section>
+
+<!-- Recents -->
+<section id="recentsContainer" class="mb-xl hidden">
+    <div class="flex justify-between items-center mb-4">
+        <h2 id="recentsLabel" class="font-label-lg text-on-surface-variant uppercase tracking-widest">Recent Words</h2>
+        <button id="clearRecentsBtn" class="text-sm text-error hover:underline font-bold">Clear All</button>
+    </div>
+    <div id="recentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+    </div>
+</section>
+</main>
+<!-- SideNavBar Component (Acts as BottomNav on Mobile) -->
+<nav class="bg-surface-container-highest backdrop-blur-md rounded-full fixed bottom-8 left-1/2 -translate-x-1/2 flex-row p-2 shadow-lg shadow-surface-container-high/50 font-label-lg text-label-lg z-50 flex items-center gap-2 md:hidden">
+<button class="text-on-surface-variant px-6 py-3 flex items-center gap-2 hover:bg-surface-container-low rounded-full transition-all scale-105 duration-200 active:scale-95">
+<span class="material-symbols-outlined">volume_up</span>
+<span>Read Aloud</span>
+</button>
+<button class="bg-primary text-on-primary rounded-full px-6 py-3 flex items-center gap-2 hover:bg-primary/90 transition-all scale-105 duration-200 active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">book_2</span>
+<span>Instant Dictionary</span>
+</button>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const loadingState = document.getElementById('loadingState');
+        const currentLookupContainer = document.getElementById('currentLookupContainer');
+        const currentLookupCard = document.getElementById('currentLookupCard');
+        const recentsContainer = document.getElementById('recentsContainer');
+        const recentsGrid = document.getElementById('recentsGrid');
+        const clearRecentsBtn = document.getElementById('clearRecentsBtn');
+
+        // Helper to create a card
+        const createCardHTML = (data, isFeatured = false) => {
+            const widthClass = isFeatured ? "md:col-span-2" : "";
+            return `
+            <div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border-2 border-primary/40 flex flex-col justify-between hover:border-primary transition-colors ${widthClass}">
+                <div>
+                    <div class="flex justify-between items-start mb-sm">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h2 class="font-headline-md text-headline-md text-on-surface capitalize">${data.word}</h2>
+                                ${data.visual_anchor ? `<span class="text-2xl">${data.visual_anchor}</span>` : ''}
+                            </div>
+                            ${data.syllable_breakdown ? `<p class="font-label-lg text-label-lg text-on-surface-variant mt-xs tracking-widest">${data.syllable_breakdown}</p>` : ''}
+                            <p class="font-body-md text-on-surface-variant italic mb-xs">${data.part_of_speech || ''}</p>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button aria-label="Listen to pronunciation" class="text-primary p-2 rounded-full hover:bg-surface-container-low transition-colors flex items-center justify-center min-h-[48px] min-w-[48px]" onclick="speakWord('${data.word}')">
+                                <span class="material-symbols-outlined">volume_up</span>
+                            </button>
+                            <button aria-label="Delete word" class="text-error p-2 rounded-full hover:bg-error-container transition-colors flex items-center justify-center min-h-[48px] min-w-[48px]" onclick="deleteWord('${data.word.replace(/'/g, "\\'")}')">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="font-body-lg text-body-lg text-on-surface mb-md">${data.simple_definition}</p>
+                    ${data.example_sentence ? `
+                    <div class="bg-surface-container p-4 rounded-lg border-l-4 border-primary">
+                        <p class="font-body-md text-body-md text-on-surface italic">"${data.example_sentence}"</p>
+                    </div>
+                    ` : ''}
+                </div>
+            </div>
+            `;
+        };
+
+        window.speakWord = (word) => {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.rate = 0.85; 
+            const voices = window.speechSynthesis.getVoices();
+            const preferredVoices = voices.filter(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Premium')));
+            if (preferredVoices.length > 0) utterance.voice = preferredVoices[0];
+            window.speechSynthesis.speak(utterance);
+        };
+
+
+        const renderRecents = () => {
+            const recents = JSON.parse(localStorage.getItem('lexiRead_recents') || '[]');
+            document.getElementById('recentsLabel').textContent = 'Recent Words';
+            if (recents.length > 0) {
+                recentsContainer.classList.remove('hidden');
+                recentsGrid.innerHTML = recents.map((item, index) => createCardHTML(item, false)).join('');
+            } else {
+                recentsContainer.classList.add('hidden');
+                recentsGrid.innerHTML = '';
+            }
+        };
+
+        const addRecent = (data) => {
+            let recents = JSON.parse(localStorage.getItem('lexiRead_recents') || '[]');
+            // remove if exists
+            recents = recents.filter(item => item.word.toLowerCase() !== data.word.toLowerCase());
+            // add to top
+            recents.unshift(data);
+            // keep only top 10
+            if (recents.length > 10) recents.pop();
+            localStorage.setItem('lexiRead_recents', JSON.stringify(recents));
+            renderRecents();
+        };
+
+        clearRecentsBtn.addEventListener('click', () => {
+            localStorage.removeItem('lexiRead_recents');
+            renderRecents();
+        });
+
+        // Search Input Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        
+        const triggerSearch = () => {
+            const word = searchInput.value.trim().toLowerCase();
+            if (word) {
+                const recents = JSON.parse(localStorage.getItem('lexiRead_recents') || '[]');
+                const found = recents.filter(item => item.word.toLowerCase().includes(word));
+                
+                if (found.length > 0) {
+                    recentsContainer.classList.remove('hidden');
+                    document.getElementById('recentsLabel').textContent = 'Search Results';
+                    recentsGrid.innerHTML = found.map(item => createCardHTML(item, false)).join('');
+                } else {
+                    recentsContainer.classList.remove('hidden');
+                    document.getElementById('recentsLabel').textContent = 'Search Results';
+                    recentsGrid.innerHTML = `
+                        <div class="col-span-full text-center py-10">
+                            <span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2">search_off</span>
+                            <h3 class="font-headline-md text-on-surface">Word not found</h3>
+                            <p class="text-on-surface-variant">The word "${word}" is not in your glossary.</p>
+                        </div>
+                    `;
+                }
+            } else {
+                renderRecents();
+            }
+        };
+
+        // Delete a single word from recents
+        window.deleteWord = (word) => {
+            let recents = JSON.parse(localStorage.getItem('lexiRead_recents') || '[]');
+            recents = recents.filter(item => item.word.toLowerCase() !== word.toLowerCase());
+            localStorage.setItem('lexiRead_recents', JSON.stringify(recents));
+            if (searchInput.value.trim()) {
+                triggerSearch();
+            } else {
+                renderRecents();
+            }
+        };
+
+        searchInput.addEventListener('input', (e) => {
+            if (e.target.value.trim() === '') {
+                renderRecents();
+            }
+        });
+
+        if (searchBtn) {
+            searchBtn.addEventListener('click', triggerSearch);
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    triggerSearch();
+                }
+            });
+        }
+
+        // 1. Check for incoming lookup
+        const wordToLookup = sessionStorage.getItem('glossaryWord');
+        const contextSentence = sessionStorage.getItem('glossaryContext') || wordToLookup;
+        
+        if (wordToLookup) {
+            // Show back button
+            document.getElementById('backToReadingBtn').classList.remove('hidden');
+
+            // Clear it so refresh doesn't trigger it again
+            sessionStorage.removeItem('glossaryWord');
+            sessionStorage.removeItem('glossaryContext');
+
+            // Show Loading
+            loadingState.classList.remove('hidden');
+            renderRecents(); // render recents while waiting
+
+            try {
+                const apiKey = localStorage.getItem('lexiRead_apiKey') || '';
+                const response = await fetch('/define-word', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-API-Key': apiKey
+                    },
+                    body: JSON.stringify({ word: wordToLookup, context_sentence: contextSentence })
+                });
+
+                if (!response.ok) throw new Error("API failed");
+                const data = await response.json();
+
+                // Hide loading, show result
+                loadingState.classList.add('hidden');
+                currentLookupContainer.classList.remove('hidden');
+                currentLookupCard.innerHTML = createCardHTML(data, true);
+
+                // Add to recents
+                addRecent(data);
+
+            } catch (e) {
+                console.error("Lookup failed", e);
+                loadingState.classList.add('hidden');
+                alert("Sorry, we couldn't fetch the definition.");
+            }
+        } else {
+            // No lookup requested, just show recents
+            renderRecents();
+        }
+    });
+</script>
+<script src="selection_toolbar.js"></script>
+</body></html>
