@@ -42,7 +42,7 @@ class DefineRequest(BaseModel):
     word: str
     context_sentence: str
 
-@app.post("/define-word")
+@app.post("/api/define-word")
 async def define_word(request: DefineRequest, x_api_key: str = Header(None)):
     if not request.word.strip() or not request.context_sentence.strip():
         raise HTTPException(status_code=400, detail="Word and context sentence cannot be empty.")
@@ -56,7 +56,7 @@ async def health_check():
     return {"status": "ok", "message": "Dyslexia Reading Companion API is running."}
 
 
-@app.post("/process-text")
+@app.post("/api/process-text")
 async def process_text(request: TextRequest, x_api_key: str = Header(None)):
     if not request.text or not request.text.strip():
         raise HTTPException(status_code=400, detail="Text cannot be empty.")
@@ -68,7 +68,7 @@ async def process_text(request: TextRequest, x_api_key: str = Header(None)):
     return result
 
 
-@app.post("/deep-dive")
+@app.post("/api/deep-dive")
 async def deep_dive(request: DeepDiveRequest, x_api_key: str = Header(None)):
     if not request.section_content or not request.section_content.strip():
         raise HTTPException(status_code=400, detail="Section content cannot be empty.")
