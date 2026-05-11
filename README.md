@@ -8,8 +8,8 @@
 
 > [!CAUTION]
 > **Important Prerequisites & Notes:**
-> - **Google Gemini API Key:** You MUST have a valid Google Gemini API key to use the AI features. The app will gracefully fall back to mock data if no key is provided.
-> - **Privacy First:** Your API key is stored locally in your browser's `localStorage` and is only transmitted in the request header to the backend. It is **never** saved on the server or logged.
+> - **Google Gemini API Key:** For the purpose of the hackathon evaluation, **an API key has already been securely configured** in the deployment environment so the application works out of the box! However, if the API calls fail (e.g., due to rate limits or quota exhaustion), please insert your own Gemini API key in the app's **Settings** menu. The app will gracefully fall back to mock data if no valid key is present.
+> - **Privacy First:** If you use your own API key, it is stored locally in your browser's `localStorage` and is only transmitted in the request header to the backend. It is **never** saved on the server or logged.
 > - **Python 3.10+:** Ensure you are running Python 3.10 or higher for the FastAPI backend to function correctly.
 
 ---
