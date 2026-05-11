@@ -27,7 +27,7 @@
       "destination": "/lexiRead/index.html"
     },
     {
-      "source": "/(?!api/|process-text|deep-dive|define-word)(.*)",
+      "source": "/((?!api/|process-text|deep-dive|define-word).*)",
       "destination": "/lexiRead/$1"
     }
   ]
