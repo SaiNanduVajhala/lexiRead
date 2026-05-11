@@ -398,7 +398,7 @@
             if (masterPrompt) payload.custom_prompt = masterPrompt;
 
             const apiKey = localStorage.getItem('lexiRead_apiKey') || '';
-            const response = await fetch('/process-text', {
+            const response = await fetch('/api/process-text', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',

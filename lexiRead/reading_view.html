@@ -258,7 +258,7 @@
 
         try {
             const apiKey = localStorage.getItem('lexiRead_apiKey') || '';
-            const res = await fetch('/deep-dive', {
+            const res = await fetch('/api/deep-dive', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',

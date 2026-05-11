@@ -340,7 +340,7 @@
 
             try {
                 const apiKey = localStorage.getItem('lexiRead_apiKey') || '';
-                const response = await fetch('/define-word', {
+                const response = await fetch('/api/define-word', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
