@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/process-text",
+      "destination": "api/main.py"
+    },
+    {
+      "source": "/deep-dive",
+      "destination": "api/main.py"
+    },
+    {
+      "source": "/define-word",
+      "destination": "api/main.py"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "api/main.py"
+    },
+    {
+      "source": "/",
+      "destination": "/lexiRead/index.html"
+    },
+    {
+      "source": "/(?!api/|process-text|deep-dive|define-word)(.*)",
+      "destination": "/lexiRead/$1"
+    }
+  ]
+}

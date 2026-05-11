@@ -24,16 +24,12 @@ app.add_middleware(
 
 gemma = GemmaService()
 
-# Serve the frontend directory as static files
-FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "..", "lexiRead")
-if os.path.isdir(FRONTEND_DIR):
-    print(f"[OK] Serving frontend from: {os.path.abspath(FRONTEND_DIR)}")
-
+# Serve the frontend directory logic removed for Vercel deployment.
+# Vercel serves the lexiRead folder as a static site and routes /api requests here.
 
 class TextRequest(BaseModel):
     text: str
     custom_prompt: str | None = None
-
 
 class DeepDiveRequest(BaseModel):
     section_type: str
@@ -83,17 +79,4 @@ async def deep_dive(request: DeepDiveRequest, x_api_key: str = Header(None)):
     )
     return result
 
-
-from fastapi.responses import FileResponse
-
-@app.get("/")
-async def read_index():
-    index_path = os.path.join(FRONTEND_DIR, "index.html")
-    if os.path.exists(index_path):
-        return FileResponse(index_path)
-    raise HTTPException(status_code=404, detail="Index file not found")
-
-# Mount static files LAST so API routes take priority
-if os.path.isdir(FRONTEND_DIR):
-    app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="lexiread")
 
